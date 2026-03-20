@@ -4,7 +4,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Resume | Y Kishan Rao</title>
+  <title>Resume - Y Kishan Rao | Experience, Skills &amp; Projects</title>
+  <meta name="description" content="Professional resume of Y Kishan Rao featuring experience in web development, technical skills in JavaScript, Java, Python, and major projects.">
+  <meta name="keywords" content="Y Kishan Rao, Resume, Web Development, JavaScript, Java, Python">
+  <meta property="og:title" content="Resume - Y Kishan Rao">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -126,11 +132,76 @@
       box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
     }
 
+    /* HAMBURGER */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+    }
+    .hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text-main);
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+    .mobile-drawer {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 200;
+    }
+    .mobile-drawer.open { display: block; }
+    .mobile-drawer-inner {
+        position: absolute;
+        top: 0; right: 0;
+        width: 220px;
+        height: 100%;
+        background: white;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .mobile-drawer-inner a {
+        padding: 12px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--text-muted);
+        transition: 0.2s;
+    }
+    .mobile-drawer-inner a:hover { background: #e2e8f0; color: var(--text-main); }
+    .mobile-drawer-inner .close-drawer {
+        font-size: 22px;
+        align-self: flex-end;
+        cursor: pointer;
+        color: var(--text-muted);
+        background: none;
+        border: none;
+        margin-bottom: 10px;
+    }
+
+    /* PAGE TRANSITION */
+    @keyframes fadeInSlide {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
     /* CONTENT */
     main {
       margin-left: var(--sidebar-width);
       padding: 60px;
       width: calc(100% - var(--sidebar-width));
+      max-width: calc(var(--sidebar-width) + 900px);
+      animation: fadeInSlide 0.45s ease-out both;
     }
 
     /* INTRO CARD */
@@ -353,14 +424,8 @@
         display: none;
       }
 
-      .nav-links {
+      .hamburger {
         display: flex;
-        flex-direction: row;
-      }
-
-      .nav-links a {
-        font-size: 12px;
-        padding: 5px 10px;
       }
 
       main {
@@ -449,9 +514,23 @@
       <span class="sub">Portfolio</span>
     </div>
     <nav class="nav-links">
-      <a href="index.html">Home</a>
+      <a href="index.html" class="active">Home</a>
     </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </aside>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-inner">
+      <button class="close-drawer" id="closeDrawer">&times;</button>
+      <a href="index.html">🏠 Home</a>
+      <a href="resume.html">📄 Resume</a>
+      <a href="biodata.html">👤 Bio-Data</a>
+      <a href="contact.html">✉️ Contact</a>
+    </div>
+  </div>
 
   <div id="imageModal" class="modal">
     <span class="close" id="closeModal">&times;</span>
@@ -461,6 +540,7 @@
   <input type="file" id="fileInput" accept="image/*" style="display: none;">
 
   <main>
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text-muted);font-size:14px;font-weight:600;margin-bottom:24px;transition:0.2s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'">&#8592; Back to Portfolio</a>
     <div class="intro-card">
       <div class="intro-left">
         <h2>Y Kishan Rao</h2>
@@ -539,9 +619,6 @@
       </div>
     </div>
 
-    <footer style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 14px; margin-top: 40px;">
-      <p>Total Visits: <span id="visitCount">Loading...</span></p>
-    </footer>
   </main>
 
   <script>
@@ -645,13 +722,18 @@
 
     loadResumeData();
 
-    // Visitor Counter
-    fetch('/api/visit')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('visitCount').textContent = data.count;
-      })
-      .catch(err => console.error('Error fetching visitor count:', err));
+
+    // Mobile Hamburger
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileDrawer  = document.getElementById('mobileDrawer');
+    const closeDrawer   = document.getElementById('closeDrawer');
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', () => mobileDrawer.classList.add('open'));
+      closeDrawer.addEventListener('click',  () => mobileDrawer.classList.remove('open'));
+      mobileDrawer.addEventListener('click', (e) => {
+        if (e.target === mobileDrawer) mobileDrawer.classList.remove('open');
+      });
+    }
   </script>
 </body>
 
