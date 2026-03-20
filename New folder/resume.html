@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Resume | Y Kishan Rao</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.3s; }
+
+    :root {
+        --bg-body: #ffffff;
+        --bg-sidebar: #f8fafc;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --primary: #2563eb;
+        --border: #e2e8f0;
+        --sidebar-width: 280px;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: var(--bg-body);
+        color: var(--text-main);
+        display: flex;
+        min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .navbar { width: var(--sidebar-width); background: var(--bg-sidebar); height: 100vh; position: fixed; left: 0; top: 0; padding: 40px 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 50; view-transition-name: sidebar; }
+    .profile-photo { width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 4px solid white; margin-bottom: 20px; cursor: zoom-in; transition: 0.3s; view-transition-name: profile-photo; box-shadow: var(--shadow); }
+    .profile-photo:hover { transform: scale(1.05); border-color: var(--primary); }
+    .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .brand-text h1 { font-size: 22px; margin: 0 0 5px 0; color: var(--text-main); }
+    .brand-text .sub { font-size: 14px; color: var(--text-muted); margin-bottom: 30px; display: block; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;}
+    .nav-links { display: flex; flex-direction: column; width: 100%; gap: 10px; }
+    .nav-links a { padding: 12px 20px; border-radius: 8px; color: var(--text-muted); text-decoration: none; font-weight: 600; transition: 0.2s; }
+    .nav-links a:hover { background: #e2e8f0; color: var(--text-main); }
+    .nav-links a.active { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3); }
+
+    /* CONTENT */
+    main { margin-left: var(--sidebar-width); padding: 60px; width: calc(100% - var(--sidebar-width)); }
+
+    /* INTRO CARD */
+    .intro-card { 
+        background: white; 
+        border: 1px solid var(--border); 
+        padding: 30px; 
+        border-radius: 16px; 
+        margin-bottom: 30px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        box-shadow: var(--shadow);
+    }
+    .intro-left h2 { font-size: 30px; margin: 0 0 10px 0; color: var(--text-main); }
+    .intro-left p { color: var(--text-muted); margin: 5px 0; }
+    .intro-contact a { color: var(--primary); text-decoration: none; font-weight: 600;}
+
+    .btn-group { display: flex; gap: 10px; }
+    .btn { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; transition: 0.2s; }
+    .btn.primary { background: var(--primary); color: white; }
+    .btn.primary:hover { background: #1d4ed8; }
+    .btn.secondary { background: white; border: 1px solid var(--border); color: var(--text-main); }
+    .btn.secondary:hover { background: #f1f5f9; }
+
+    .grid-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+    
+    .section { background: white; border: 1px solid var(--border); padding: 25px; border-radius: 16px; margin-bottom: 20px; box-shadow: var(--shadow); }
+    h3 { color: var(--text-main); margin-top: 0; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; font-size: 18px; letter-spacing: 0.5px; text-transform: uppercase;}
+    
+    ul.timeline { list-style: none; padding: 0; }
+    ul.timeline li { margin-bottom: 20px; border-left: 2px solid #e2e8f0; padding-left: 20px; position: relative; }
+    ul.timeline li::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--primary); border-radius: 50%; }
+    .role { font-weight: 700; display: block; font-size: 18px; color: var(--text-main); }
+    .place { font-size: 14px; color: var(--text-muted); display: block; margin-bottom: 5px; }
+
+    .skills-tags { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; }
+    .skills-tags li { background: #f1f5f9; padding: 8px 15px; border-radius: 20px; font-size: 14px; color: var(--text-main); border: 1px solid transparent; }
+    .skills-tags li:hover { background: #e0f2fe; color: var(--primary); border-color: var(--primary); }
+
+    /* MODAL */
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); flex-direction: column; align-items: center; justify-content: center; }
+    .modal-content { max-width: 90%; max-height: 80vh; border-radius: 10px; border: 4px solid white; }
+    .close { position: absolute; top: 20px; right: 40px; color: white; font-size: 40px; cursor: pointer; }
+    .modal-btn { margin-top: 20px; padding: 12px 30px; background: white; color: black; border: none; border-radius: 30px; cursor: pointer; font-weight: 700; }
+
+    @media (max-width: 900px) {
+        body { flex-direction: column; }
+        .navbar { width: 100%; height: auto; position: relative; flex-direction: row; padding: 15px; border-right: none; border-bottom: 1px solid var(--border); justify-content: space-between; background: white; }
+        .profile-photo { width: 50px; height: 50px; margin: 0; }
+        .brand-text, .nav-links { display: none; }
+        .nav-links { display: flex; flex-direction: row; }
+        .nav-links a { font-size: 12px; padding: 5px 10px; }
+        main { margin-left: 0; width: 100%; padding: 20px; }
+        .grid-layout { grid-template-columns: 1fr; }
+        .intro-card { flex-direction: column; gap: 20px; text-align: center; }
+    }
+
+    /* PRINT STYLE */
+    @media print {
+        .navbar, .btn-group, .modal { display: none !important; }
+        body { background: white; color: black; display: block; }
+        main { margin: 0; width: 100%; padding: 0; }
+        .section, .intro-card { border: none; background: none; color: black; padding: 0; margin-bottom: 20px; box-shadow: none; }
+        h3 { color: black; border-bottom: 1px solid #000; }
+        .intro-left h2, .intro-left p, .role { color: black; }
+        ul.timeline li { border-left: 2px solid #ccc; }
+        ul.timeline li::before { background: #000; }
+        .skills-tags li { border: 1px solid #ccc; color: black; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <aside class="navbar">
+    <span class="profile-photo" id="photoTrigger">
+      <img src="/mnt/data/5484024b-f64c-48f6-82a8-45eb01642ae2.png" id="profileThumb" alt="Profile">
+    </span>
+    <div class="brand-text">
+      <h1>Y Kishan Rao</h1>
+      <span class="sub">Portfolio</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="resume.html" class="active">Resume</a>
+      <a href="biodata.html">Bio-Data</a>
+    </nav>
+  </aside>
+
+  <div id="imageModal" class="modal">
+    <span class="close" id="closeModal">&times;</span>
+    <img class="modal-content" id="fullImage">
+    <button class="modal-btn" id="changePhotoBtn">Update Photo</button>
+  </div>
+  <input type="file" id="fileInput" accept="image/*" style="display: none;">
+
+  <main>
+    <div class="intro-card">
+      <div class="intro-left">
+        <h2>Y Kishan Rao</h2>
+        <p>Computer Science Student | JSSATEB</p>
+        <p class="intro-contact">
+            <a href="mailto:ykishanrao05@gmail.com">ykishanrao05@gmail.com</a> | 8095233582
+        </p>
+      </div>
+      <div class="btn-group">
+        <button id="downloadPdf" class="btn primary">Download PDF</button>
+        <button id="printResume" class="btn secondary">Print</button>
+      </div>
+    </div>
+
+    <div class="grid-layout">
+      <div>
+        <div class="section">
+            <h3>Objective</h3>
+            <p>Seeking internship or entry-level opportunities to strengthen web development skills and contribute to real projects.</p>
+        </div>
+
+        <div class="section">
+            <h3>Education</h3>
+            <ul class="timeline">
+                <li>
+                    <span class="role">B.E. (CSE)</span>
+                    <span class="place">JSS Academy of Technical Education</span>
+                    <span>3rd Year — CGPA: 8.00</span>
+                </li>
+                <li>
+                    <span class="role">Pre-University (12th)</span>
+                    <span class="place">Sri Chaitanya College</span>
+                </li>
+                <li>
+                    <span class="role">Secondary (10th)</span>
+                    <span class="place">JSS Public School</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Projects</h3>
+            <ul class="timeline">
+                <li>
+                    <span class="role">Portfolio Website</span>
+                    <span>HTML, CSS, JavaScript, LocalStorage</span>
+                </li>
+                <li>
+                    <span class="role">Todo App</span>
+                    <span>DOM Manipulation</span>
+                </li>
+            </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="section">
+            <h3>Technical Skills</h3>
+            <ul class="skills-tags">
+                <li>HTML & CSS</li>
+                <li>JavaScript</li>
+                <li>Java</li>
+                <li>Python</li>
+                <li>jQuery</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Languages</h3>
+            <ul class="skills-tags">
+                <li>English</li>
+                <li>Kannada</li>
+                <li>Hindi</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const photoTrigger = document.getElementById('photoTrigger');
+    const modal = document.getElementById('imageModal');
+    const fullImage = document.getElementById('fullImage');
+    const profileThumb = document.getElementById('profileThumb');
+    const closeModal = document.getElementById('closeModal');
+    const changePhotoBtn = document.getElementById('changePhotoBtn');
+    const fileInput = document.getElementById('fileInput');
+
+    const savedImage = localStorage.getItem('myProfilePic');
+    if (savedImage) { profileThumb.src = savedImage; }
+
+    photoTrigger.addEventListener('click', function() {
+      modal.style.display = "flex";
+      fullImage.src = profileThumb.src;
+    });
+    closeModal.addEventListener('click', function() { modal.style.display = "none"; });
+    window.addEventListener('click', function(event) { if (event.target == modal) { modal.style.display = "none"; } });
+    changePhotoBtn.addEventListener('click', function() { fileInput.click(); });
+    fileInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const result = e.target.result;
+          profileThumb.src = result; fullImage.src = result; localStorage.setItem('myProfilePic', result);
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('downloadPdf').addEventListener('click', function(){
+        window.print();
+    });
+    document.getElementById('printResume').addEventListener('click', function(){
+        window.print();
+    });
+  </script>
+</body>
+</html>

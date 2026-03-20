@@ -137,6 +137,10 @@
             box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
         }
 
+        .nav-links a.link-red:hover   { color: #ef4444; border-left: 3px solid #ef4444; }
+        .nav-links a.link-green:hover { color: #10b981; border-left: 3px solid #10b981; }
+        .nav-links a.link-pink:hover  { color: #ec4899; border-left: 3px solid #ec4899; }
+
         /* CONTENT AREA */
         main,
         .hero-container {
@@ -172,17 +176,21 @@
             display: flex;
             gap: 30px;
             flex-wrap: wrap;
+            align-items: stretch;
         }
 
         .card {
             flex: 1;
-            min-width: 300px;
+            min-width: 260px;
             background: white;
             border: 1px solid var(--border);
             padding: 30px;
             border-radius: 16px;
             transition: 0.3s;
             box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card:hover {
@@ -209,26 +217,46 @@
             border: none;
         }
 
-        .btn.primary {
-            background: var(--primary);
-            color: white;
+        .btn.glassy-red {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .btn.glassy-red:hover {
+            background: rgba(239, 68, 68, 0.2);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.5);
         }
 
-        .btn.primary:hover {
-            background: #1d4ed8;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        .btn.glassy-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .btn.glassy-green:hover {
+            background: rgba(16, 185, 129, 0.2);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
         }
 
-        .btn.secondary {
-            background: white;
-            border: 1px solid var(--border);
-            color: var(--text-main);
+        .btn.glassy-pink {
+            background: rgba(236, 72, 153, 0.1);
+            color: #ec4899;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-
-        .btn.secondary:hover {
-            border-color: var(--secondary);
-            color: var(--secondary);
-            background: #f0fdf4;
+        .btn.glassy-pink:hover {
+            background: rgba(236, 72, 153, 0.2);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
+            border-color: rgba(236, 72, 153, 0.5);
         }
 
         /* MODAL */
@@ -404,26 +432,46 @@
             border: none;
         }
 
-        .btn.primary {
-            background: var(--primary);
-            color: white;
+        .btn.glassy-red {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .btn.glassy-red:hover {
+            background: rgba(239, 68, 68, 0.2);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.5);
         }
 
-        .btn.primary:hover {
-            background: #1d4ed8;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        .btn.glassy-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .btn.glassy-green:hover {
+            background: rgba(16, 185, 129, 0.2);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
         }
 
-        .btn.secondary {
-            background: white;
-            border: 1px solid var(--border);
-            color: var(--text-main);
+        .btn.glassy-pink {
+            background: rgba(236, 72, 153, 0.1);
+            color: #ec4899;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-
-        .btn.secondary:hover {
-            border-color: var(--secondary);
-            color: var(--secondary);
-            background: #f0fdf4;
+        .btn.glassy-pink:hover {
+            background: rgba(236, 72, 153, 0.2);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
+            border-color: rgba(236, 72, 153, 0.5);
         }
 
         /* MODAL */
@@ -538,7 +586,7 @@
 
     <aside class="navbar">
         <span class="profile-photo" id="photoTrigger" title="Click to view full picture">
-            <img src="/mnt/data/5484024b-f64c-48f6-82a8-45eb01642ae2.png" id="profileThumb" alt="Profile">
+            <img src="assets/profile.png" id="profileThumb" alt="Profile">
         </span>
         <div class="brand-text">
             <h1>Y Kishan Rao</h1>
@@ -546,9 +594,9 @@
         </div>
         <nav class="nav-links">
             <a href="index.html" class="active">Home</a>
-            <a href="resume.html">Resume</a>
-            <a href="biodata.html">Bio-Data</a>
-            <a href="contact.html">Contact</a>
+            <a href="resume.html" class="link-red">Resume</a>
+            <a href="biodata.html" class="link-green">Bio-Data</a>
+            <a href="contact.html" class="link-pink">Contact</a>
         </nav>
     </aside>
 
@@ -573,13 +621,19 @@
             <div class="card">
                 <h3>Professional Resume</h3>
                 <p>Deep dive into my technical stack, academic history, and project showcase.</p>
-                <a href="resume.html" class="btn primary">Go to Resume &rarr;</a>
+                <a href="resume.html" class="btn glassy-red">Go to Resume &rarr;</a>
             </div>
 
             <div class="card">
                 <h3>Personal Bio-Data</h3>
                 <p>Personal details, hobbies, languages known, and contact information.</p>
-                <a href="biodata.html" class="btn secondary">View Bio-Data &rarr;</a>
+                <a href="biodata.html" class="btn glassy-green">View Bio-Data &rarr;</a>
+            </div>
+
+            <div class="card">
+                <h3>Contact Me</h3>
+                <p>Feel free to reach out for opportunities, queries, or just to say hi!</p>
+                <a href="contact.html" class="btn glassy-pink">Get in Touch &rarr;</a>
             </div>
         </div>
 
