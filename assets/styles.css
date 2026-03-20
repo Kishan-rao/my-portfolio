@@ -1,0 +1,238 @@
+/* File: assets/styles.css
+   Colourful theme for Resume & Bio-data site
+*/
+
+/* ---------- Theme variables (colourful) ---------- */
+:root{
+  --bg: #f3f7fb;
+  --card: #ffffff;
+  --text: #0e1320;
+  --muted: #566174;
+  --accent-a: #6c5ce7; /* purple */
+  --accent-b: #00b894; /* teal */
+  --accent-c: #ff6b6b; /* coral */
+  --glass: rgba(255,255,255,0.65);
+  --shadow-strong: 0 14px 35px rgba(15,20,40,0.12);
+  --shadow-soft: 0 8px 20px rgba(15,20,40,0.06);
+  --radius: 14px;
+  --maxw: 1100px;
+  --gap: 22px;
+  --sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* ---------- Reset & base ---------- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background: linear-gradient(180deg, #f6fbff 0%, #f3f7fb 60%);
+  color:var(--text);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-size:16px;
+  line-height:1.45;
+}
+
+/* ---------- Layout container ---------- */
+.container{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:28px;
+}
+
+/* ---------- Header (colourful gradient) ---------- */
+.site-header{
+  background: linear-gradient(90deg, rgba(108,92,231,0.12) 0%, rgba(0,184,148,0.08) 50%, rgba(255,107,107,0.06) 100%);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(15,20,40,0.04);
+  position:sticky;
+  top:0;
+  z-index:30;
+}
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.site-header h1{
+  font-size:20px;
+  margin:0;
+  color:var(--text);
+  font-weight:700;
+  padding:12px 0;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+/* optional header banner using uploaded image */
+.site-header .banner {
+  height:48px;
+  width:48px;
+  border-radius:10px;
+  background-image: url("/mnt/data/5484024b-f64c-48f6-82a8-45eb01642ae2.png");
+  background-size:cover;
+  background-position:center;
+  box-shadow: 0 8px 20px rgba(12,20,48,0.08);
+  border: 2px solid rgba(255,255,255,0.6);
+}
+
+/* Navigation pills */
+.site-header nav{display:flex;align-items:center;gap:10px}
+.site-header nav a{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:700;
+  font-size:14px;
+  transition:all .22s ease;
+}
+.site-header nav a:hover{transform:translateY(-2px)}
+.site-header nav a.active{
+  color:var(--accent-a);
+  background: linear-gradient(90deg, rgba(108,92,231,0.12), rgba(0,184,148,0.06));
+  box-shadow: 0 6px 22px rgba(108,92,231,0.08);
+}
+
+/* ---------- Grid layout ---------- */
+.main-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:var(--gap);
+  margin-top:24px;
+  align-items:start;
+}
+
+/* ---------- Card styles (colourful variants) ---------- */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.98));
+  padding:20px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-strong);
+  border: 1px solid rgba(15,20,40,0.03);
+  overflow:hidden;
+}
+
+/* left profile card slightly cooler */
+.card.profile{
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,255,0.9));
+  border-left: 6px solid var(--accent-a);
+}
+
+/* right skills card tinted */
+.card.skills{
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,249,240,0.95));
+  border-left: 6px solid var(--accent-b);
+}
+
+/* headings */
+.profile h2, .skills h2{
+  margin:0 0 12px 0;
+  font-size:20px;
+  color:var(--text);
+}
+.resume-card h2{font-size:22px}
+
+/* info list */
+.info-list{list-style:none;padding:0;margin:12px 0 0 0}
+.info-list li{
+  padding:12px 0;
+  border-bottom:1px dashed rgba(15,20,40,0.04);
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.info-list li strong{width:110px;display:inline-block;color:var(--muted);font-weight:700}
+.info-list li a{color:var(--accent-b);font-weight:700}
+
+/* small text */
+.text-muted{color:var(--muted)}
+
+/* Quick skills list with colorful bullets */
+.card.skills ul {
+  list-style: none;
+}
+
+.card.skills li{
+  margin:8px 0;
+  position:relative;
+  padding-left:14px;
+  line-height:1.4;
+}
+.card.skills li:before{
+  content:'';
+  width:10px;height:10px;border-radius:50%;
+  position:absolute;left:0;top:7px;
+  background:linear-gradient(135deg,var(--accent-a),var(--accent-c));
+  box-shadow:0 6px 12px rgba(12,20,48,0.08);
+}
+
+/* Contact area */
+.card.skills p a{color:var(--accent-c); font-weight:700}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:12px;
+  background: linear-gradient(90deg,var(--accent-a),var(--accent-b));
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  border:0;
+  cursor:pointer;
+  box-shadow:0 10px 26px rgba(11,118,239,0.12);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.btn:hover{transform:translateY(-4px); box-shadow:0 18px 40px rgba(11,118,239,0.14)}
+.btn.outline{
+  background:transparent;
+  color:var(--accent-c);
+  border:1px solid rgba(255,107,107,0.14);
+  box-shadow:none;
+}
+
+/* actions layout */
+.actions{margin-top:14px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* footer */
+.site-footer{
+  margin-top:30px;
+  padding:18px 0;
+  text-align:center;
+  color:var(--muted);
+  font-weight:600;
+}
+
+/* responsive */
+@media (max-width:980px){
+  .main-grid{grid-template-columns:1fr}
+  .container{padding:18px}
+  .site-header .container{flex-direction:column;align-items:flex-start;gap:10px}
+}
+
+/* print rules keep simple */
+@media print{
+  body{background:#fff;color:#000}
+  .site-header, .site-footer, .btn, .actions{display:none!important}
+  .card{box-shadow:none;border-radius:0}
+  @page{margin:10mm}
+}
+
+/* small helpers and animations */
+.kv{display:flex;gap:8px;align-items:center}
+.badge{
+  display:inline-block;padding:6px 8px;border-radius:8px;background:linear-gradient(90deg, rgba(108,92,231,0.08), rgba(0,184,148,0.06));
+  font-size:13px;color:var(--muted);font-weight:700;
+}
+
+/* focus styles for accessibility */
+a:focus-visible,button:focus-visible{
+  outline:3px solid rgba(108,92,231,0.15);
+  outline-offset:2px;border-radius:8px;
+}
