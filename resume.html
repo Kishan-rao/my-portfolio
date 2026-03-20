@@ -583,18 +583,20 @@
         </div>
 
         <div class="section">
-          <h3>Experience</h3>
-          <ul class="timeline" id="experienceList">
-            <!-- Loaded via JS -->
-            <li>Loading experience...</li>
-          </ul>
-        </div>
-
-        <div class="section">
           <h3>Projects</h3>
           <ul class="timeline" id="projectList">
-            <!-- Loaded via JS -->
-            <li>Loading projects...</li>
+            <li>
+              <span class="role">FinSecure Al - Advanced Spam Text Detector</span>
+              <span>Built a real-time spam detection web application using FastAPI. Implemented an ensemble model combining Naive Bayes, LSTM, and CNN for text classification. Achieved ~99% accuracy on spam classification through preprocessing and model tuning. Developed APIs for model inference and integrated them with an interactive Ul. Engineered a high-performance FastAPI web application that processes real-time text analysis, combining multiple Al algorithms to deliver 99% spam classification accuracy with interactive confidence scoring.</span>
+            </li>
+            <li>
+              <span class="role">SwiftLink - High-Performance URL Shortening Service</span>
+              <span>Developed a scalable URL shortening service using Java 21 and Spring Boot. Implemented REST APIs for link creation, redirection, and click analytics. Integrated Redis caching to reduce database load and improve response time. Added features including custom aliases, JWT authentication, and rate limiting.</span>
+            </li>
+            <li>
+              <span class="role">Portfolio Website</span>
+              <span>A personal portfolio website to showcase my skills and projects.</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -603,8 +605,18 @@
         <div class="section">
           <h3>Technical Skills</h3>
           <ul class="skills-tags" id="skillsList">
-            <!-- Loaded via JS -->
-            <li>Loading skills...</li>
+            <li>JavaScript</li>
+            <li>Java</li>
+            <li>Python</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Database Management</li>
+            <li>DSA</li>
+            <li>OOP</li>
+            <li>Git</li>
+            <li>GitHub</li>
+            <li>VSCode</li>
+            <li>IntelliJ</li>
           </ul>
         </div>
 
@@ -670,57 +682,6 @@
     document.getElementById('printResume').addEventListener('click', function () {
       window.print();
     });
-
-    // Fetch Resume Data
-    async function loadResumeData() {
-      try {
-        const response = await fetch('/api/resume-data');
-        const data = await response.json();
-
-        // Render Experience
-        const expList = document.getElementById('experienceList');
-        if (data.experience && data.experience.length > 0) {
-          expList.innerHTML = data.experience.map(exp => `
-                    <li>
-                        <span class="role">${exp.role}</span>
-                        <span class="place">${exp.company} | ${exp.duration}</span>
-                        <span>${exp.description}</span>
-                    </li>
-                `).join('');
-        } else {
-          expList.innerHTML = '<li>No experience added yet.</li>';
-        }
-
-        // Render Projects
-        const projList = document.getElementById('projectList');
-        if (data.projects && data.projects.length > 0) {
-          projList.innerHTML = data.projects.map(proj => `
-                    <li>
-                        <span class="role">${proj.title}</span>
-                        <span>${proj.description}</span>
-                        ${proj.link !== '#' ? `<br><a href="${proj.link}" target="_blank" style="font-size:12px;color:var(--primary)">View Project</a>` : ''}
-                    </li>
-                `).join('');
-        } else {
-          projList.innerHTML = '<li>No projects added yet.</li>';
-        }
-
-        // Render Skills
-        const skillList = document.getElementById('skillsList');
-        if (data.skills && data.skills.length > 0) {
-          skillList.innerHTML = data.skills.map(skill =>
-            skill.items.split(',').map(item => `<li>${item.trim()}</li>`).join('')
-          ).join('');
-        } else {
-          skillList.innerHTML = '<li>No skills added yet.</li>';
-        }
-
-      } catch (error) {
-        console.error('Error loading resume data:', error);
-      }
-    }
-
-    loadResumeData();
 
 
     // Mobile Hamburger
