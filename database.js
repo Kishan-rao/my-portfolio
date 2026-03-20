@@ -85,9 +85,9 @@ const db = new sqlite3.Database('./portfolio.db', (err) => {
 
                     // Projects
                     const projects = [
-                        ['FinSecure Al - Advanced Spam Text Detector', 'Built a real-time spam detection web application using FastAPI. Implemented an ensemble model combining Naive Bayes, LSTM, and CNN for text classification. Achieved ~99% accuracy on spam classification through preprocessing and model tuning. Developed APIs for model inference and integrated them with an interactive Ul. Engineered a high-performance FastAPI web application that processes real-time text analysis, combining multiple Al algorithms to deliver 99% spam classification accuracy with interactive confidence scoring.', '#'],
-                        ['SwiftLink - High-Performance URL Shortening Service', 'Developed a scalable URL shortening service using Java 21 and Spring Boot. Implemented REST APIs for link creation, redirection, and click analytics. Integrated Redis caching to reduce database load and improve response time. Added features including custom aliases, JWT authentication, and rate limiting.', '#'],
-                        ['Portfolio Website', 'A personal portfolio website to showcase my skills and projects.', '#']
+                        ['FinSecure AI - Advanced Spam Text Detector', 'Built a real-time spam detection web application using FastAPI. Implemented an ensemble model combining Naive Bayes, LSTM, and CNN for text classification. Achieved ~99% accuracy on spam classification through preprocessing and model tuning.', 'https://finsecure-ai-uepz.onrender.com/'],
+                        ['SwiftLink - High-Performance URL Shortening Service', 'Developed a scalable URL shortening service using Java 21 and Spring Boot. Implemented REST APIs for link creation, redirection, and click analytics. Integrated Redis caching, custom aliases, JWT authentication, and rate limiting.', 'https://swiftlink-url-shortener-production.up.railway.app/'],
+                        ['Portfolio Website', 'A personal portfolio website to showcase my skills and projects. Built with vanilla HTML, CSS, and JavaScript with a Node.js/SQLite backend.', '#']
                     ];
                     const projStmt = db.prepare("INSERT INTO projects (title, description, link) VALUES (?, ?, ?)");
                     projects.forEach(proj => projStmt.run(proj));
