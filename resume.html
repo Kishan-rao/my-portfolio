@@ -38,6 +38,64 @@
       --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    /* LIGHT THEME OVERRIDES */
+    html.light-theme {
+      --bg-body: #f8fafc;
+      --bg-sidebar: rgba(255, 255, 255, 0.9);
+      --bg-surface: rgba(255, 255, 255, 0.85);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --primary: #7c3aed;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Smooth theme transition */
+    *, *::before, *::after {
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* THEME TOGGLE BUTTON */
+    .theme-toggle {
+      margin-top: auto;
+      padding-top: 20px;
+      width: 100%;
+    }
+
+    #themeToggleBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: var(--radius-btn);
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    #themeToggleBtn:hover {
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    html.light-theme body::before {
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.05) 0%, transparent 70%);
+    }
+    html.light-theme body::after {
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.03) 0%, transparent 70%);
+    }
+    html.light-theme .mobile-drawer-inner {
+      background: rgba(248, 250, 252, 0.98);
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -643,6 +701,12 @@
     <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
+    <div class="theme-toggle">
+      <button id="themeToggleBtn" aria-label="Switch to light mode" title="Switch to light mode">
+        <span class="theme-icon">☀️</span>
+        <span class="theme-label">Toggle Theme</span>
+      </button>
+    </div>
   </aside>
 
   <!-- Mobile Drawer -->
@@ -847,6 +911,7 @@
       });
     }
   </script>
+  <script src="assets/theme.js"></script>
 </body>
 
 </html>
